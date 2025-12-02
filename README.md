@@ -49,7 +49,7 @@ Se o Arduino reiniciar ou desconectar ao mover o motor, isso geralmente é causa
 
 ## Autor
 
-Luis Felipe Farias Nunes | Joao Pedro Cavalcanti de Souza | Guilherme Alves de Souza | Caua Rego Tavares Leite Duarte  | Gabriel Brito Ferreira Dias | Matheus Rodrigues Larre
+Luis Felipe Farias Nunes | João Pedro Cavalcanti de Souza | Guilherme Alves de Souza | Cauã Rego Tavares Leite Duarte  | Gabriel Brito Ferreira Dias | Matheus Rodrigues Larré
 
 ---
 *Status do Projeto: Concluído ✅*
