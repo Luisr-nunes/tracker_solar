@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SolarTrack | Sistemas Digitais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="hero" id="topo">
+    <div class="shell">
+      <nav class="nav">
+        <a class="brand" href="#topo">
+          <img src="logo.svg" alt="Logotipo SolarTrack" />
+        </a>
+        <div class="nav-links">
+          <a href="#descricao">Projeto</a>
+          <a href="#componentes">Componentes</a>
+          <a href="#passos">Passo a passo</a>
+          <a href="#codigo">Código</a>
+        </div>
+        <a class="cta" href="#download">Download</a>
+      </nav>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow">Disciplina de Sistemas Digitais · Introdução à Computação</p>
+          <h1>SolarTrack - Sistema de Rastreamento Solar Automatizado</h1>
+          <p class="lead">Um tracker acessível, baseado em Arduino e sensores LDR, que mantém o painel sempre alinhado à maior luminosidade para maximizar a eficiência energética.</p>
+          <div class="hero-actions">
+            <a class="cta primary" href="#video">Assistir ao vídeo</a>
+            <a class="cta ghost" href="#passos">Ver tutorial completo</a>
+          </div>
+          <div class="hero-meta">
+            <span>Motivação: aproveitar cada watt em cenários educacionais e domésticos.</span>
+            <span>Objetivo: rastrear luz automaticamente usando componentes de baixo custo.</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-glass">
+            <p class="hero-badge">
+              <span>Matriz com LDR</span>
+              <span>Arduino Uno</span>
+              <span>Estrutura em papelão</span>
+            </p>
+            <img src="esquema-conceitual.jpeg" alt="Esquema conceitual do SolarTrack" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="transition-overlay" aria-hidden="true"></div>
+
+  <main>
+    <div class="shell stack">
+    <section class="panel" id="descricao">
+      <div class="panel-content">
+        <p class="eyebrow">Descrição do Projeto</p>
+        <h2>Motivação · Objetivo · Contexto</h2>
+        <div class="grid two">
+          <div>
+            <p><strong>Motivação:</strong> A crescente demanda por eficiência energética exige soluções que capturem toda a luz disponível. Um sistema de rastreamento solar mantém o painel apontado para a fonte mais intensa, aumentando sensivelmente o rendimento.</p>
+            <p><strong>Objetivo:</strong> Desenvolver um tracker de baixo custo com Arduino Uno e dois LDRs para detectar a diferença de luminosidade e movimentar o eixo automaticamente, servindo como base prática para estudos de automação e energia renovável.</p>
+            <p><strong>Contextualização:</strong> Inserido no universo de Sistemas Digitais e automação, o SolarTrack combina eletrônica básica e programação embarcada. É uma versão didática, replicável e ideal para o ambiente acadêmico.</p>
+          </div>
+          <div class="concept">
+            <p><strong>Esquema Conceitual</strong></p>
+            <img src="esquema-conceitual.jpeg" alt="Diagrama conceitual do rastreador solar" />
+            <small>Inclua nesta área o diagrama do seu circuito ou protótipo físico. O arquivo está no pacote para download.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="keywords">
+      <div class="panel-content">
+        <p class="eyebrow">Palavras-chave</p>
+        <ul class="keywords">
+          <li>Rastreamento solar</li>
+          <li>Arduino Uno</li>
+          <li>Automação</li>
+          <li>Energia renovável</li>
+          <li>Sensores LDR</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" id="autores">
+      <div class="panel-content">
+        <p class="eyebrow">Autores</p>
+        <h2>Time SolarTrack</h2>
+        <div class="grid three cards">
+          <article class="card persona">
+            <h3>Gabriel Brito</h3>
+            <p>Coordena a integração eletrônica e cuida da instrumentação para garantir leituras fiéis dos LDR.</p>
+            <div class="links">
+              <a href="https://github.com/caua-rego" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/caua-rego-developer" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </article>
+          <article class="card persona">
+            <h3>Matheus Larreh</h3>
+            <p>Lidera o firmware e testa diferentes curvas de mapeamento para suavizar o movimento do eixo.</p>
+            <div class="links">
+              <a href="https://github.com/caua-rego" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/caua-rego-developer" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </article>
+          <article class="card persona">
+            <h3>Luis Alves</h3>
+            <p>Cuida da prototipagem física em papelão e documenta cada iteração com fotos para a disciplina.</p>
+            <div class="links">
+              <a href="https://github.com/caua-rego" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/caua-rego-developer" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </article>
+          <article class="card persona">
+            <h3>Guilherme Alves</h3>
+            <p>Responsável pelo design da experiência e pela linha editorial desta landing page.</p>
+            <div class="links">
+              <a href="https://github.com/caua-rego" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/caua-rego-developer" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </article>
+          <article class="card persona">
+            <h3>Cauã Rego</h3>
+            <p>Cuida da automação de testes e produz o conteúdo audiovisual para o vídeo tutorial.</p>
+            <div class="links">
+              <a href="https://github.com/caua-rego" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/caua-rego-developer" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </article>
+          <article class="card persona">
+            <h3>João Pedro</h3>
+            <p>Documenta o processo, faz benchmarking com trackers comerciais e valida as lições aprendidas.</p>
+            <div class="links">
+              <a href="https://github.com/caua-rego" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/caua-rego-developer" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </article>
+        </div>
+        <div class="callout">
+          <p>Queremos ver sua versão! Marque o time no LinkedIn quando publicar o protótipo final.</p>
+          <a class="cta" href="https://www.linkedin.com/feed/update/solartrack" target="_blank" rel="noreferrer">Ver publicação</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="componentes">
+      <div class="panel-content">
+        <p class="eyebrow">Componentes e suprimentos</p>
+        <div class="grid two">
+          <div>
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Componente</th>
+                  <th>Qtd.</th>
+                  <th>Descrição</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>LDR (sensor de luz)</td>
+                  <td>2</td>
+                  <td>Detectam a intensidade luminosa em cada lado e permitem comparar qual direção está mais iluminada.</td>
+                </tr>
+                <tr>
+                  <td>Resistores 1 kΩ</td>
+                  <td>2</td>
+                  <td>Combinados aos LDRs formam divisores de tensão estáveis para leitura analógica.</td>
+                </tr>
+                <tr>
+                  <td>Servo motor SG90</td>
+                  <td>1</td>
+                  <td>Executa o movimento do eixo, seguindo o comando enviado pelo Arduino.</td>
+                </tr>
+                <tr>
+                  <td>Arduino Uno</td>
+                  <td>1</td>
+                  <td>Microcontrolador que lê os sensores e executa a lógica de movimentação.</td>
+                </tr>
+                <tr>
+                  <td>Palito de churrasco</td>
+                  <td>1</td>
+                  <td>Serve de eixo leve, permitindo que o suporte gire suavemente.</td>
+                </tr>
+                <tr>
+                  <td>Cola quente</td>
+                  <td>n/a</td>
+                  <td>Fixação rápida de sensores e suportes sobre o papelão.</td>
+                </tr>
+                <tr>
+                  <td>Papelão</td>
+                  <td>n/a</td>
+                  <td>Estrutura física, base e barreira entre os sensores.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <p class="eyebrow">Aplicativos e plataformas</p>
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Ferramenta</th>
+                  <th>Versão</th>
+                  <th>Função</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Arduino IDE</td>
+                  <td>2.x.x</td>
+                  <td>Programação e upload do firmware para o Arduino Uno.</td>
+                </tr>
+                <tr>
+                  <td>YouTube</td>
+                  <td>-</td>
+                  <td>Publicação e hospedagem do vídeo demonstrativo.</td>
+                </tr>
+                <tr>
+                  <td>GitHub</td>
+                  <td>-</td>
+                  <td>Repositório com código-fonte e arquivos auxiliares.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel steps" id="passos">
+      <div class="panel-content">
+        <p class="eyebrow">Passo a passo</p>
+        <h2>Tutorial guiado</h2>
+        <div class="steps-grid">
+          <article>
+            <img src="https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&w=800&q=80" alt="Base em papelão sendo cortada" />
+            <h3>1 · Preparar a base</h3>
+            <p>Corte um pedaço firme de papelão que servirá como base. Esse suporte precisa estar nivelado para sustentar o eixo e os sensores.</p>
+          </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" alt="Suporte com palito" />
+            <h3>2 · Montar o suporte</h3>
+            <p>Fixe o palito de churrasco na base usando cola quente. Ele será o eixo que orienta o módulo sensor. Verifique se o palito se move livremente.</p>
+          </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Sensores LDR" />
+            <h3>3 · Posicionar os LDRs</h3>
+            <p>Instale os dois LDRs lado a lado e coloque entre eles uma pequena barreira de papelão. Isso amplia a diferença de iluminação percebida.</p>
+          </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=800&q=80" alt="Circuito em protoboard" />
+            <h3>4 · Montar o circuito</h3>
+            <p>Monte dois divisores de tensão com os resistores de 1 kΩ e ligue as saídas nos pinos A0 e A1 do Arduino. Alimente tudo com 5 V do próprio Uno.</p>
+          </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Upload de código" />
+            <h3>5 · Carregar o código</h3>
+            <p>Conecte o Arduino ao computador, abra a Arduino IDE, cole o firmware e faça o upload. Use o Serial Monitor para conferir as leituras.</p>
+          </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Teste com lanterna" />
+            <h3>6 · Testar o sistema</h3>
+            <p>Direcione uma lanterna para cada lado e observe se o eixo acompanha a luz mais forte. Ajuste o mapeamento se notar atraso ou jitter.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel code" id="codigo">
+      <div class="panel-content">
+        <p class="eyebrow">Código essencial</p>
+        <div class="grid two">
+          <div>
+            <h2>Loop principal</h2>
+            <p>O firmware compara os LDRs, calcula o erro e atualiza o eixo em ângulos seguros. Mantemos o código compacto para facilitar o estudo.</p>
+            <pre><code class="language-cpp">// Techatronic.com
+#include &lt;Servo.h&gt;
+
+Servo sg90;
+int initial_position = 90;
+int LDR1 = A0;
+int LDR2 = A1;
+int error = 5;
+int servopin = 4;
+
+void setup() {
+  sg90.attach(servopin);
+  pinMode(LDR1, INPUT);
+  pinMode(LDR2, INPUT);
+  sg90.write(initial_position);
+  delay(2000);
+}
+
+void loop() {
+  int R1 = analogRead(LDR1);
+  int R2 = analogRead(LDR2);
+  Serial.println(R1);
+  Serial.println("LDR1");
+  Serial.println(R2);
+  Serial.println("LDR1");
+  delay(300);
+
+  int diff1 = abs(R1 - R2);
+  int diff2 = abs(R2 - R1);
+
+  if ((diff1 &lt;= error) || (diff2 &lt;= error)) {
+    // dentro da tolerância, não move
+  } else {
+    if (R1 &gt; R2) {
+      initial_position = --initial_position;
+    }
+    if (R1 &lt; R2) {
+      initial_position = ++initial_position;
+    }
+  }
+
+  sg90.write(initial_position);
+  delay(100);
+}</code></pre>
+            <p><a href="https://github.com/solartrack-lab/solartrack" target="_blank" rel="noreferrer">Ver repositório completo no GitHub</a></p>
+          </div>
+          <div>
+            <h3>Explicações rápidas</h3>
+            <ul>
+              <li><strong>Janela de tolerância:</strong> o erro máximo (5 unidades ADC) evita micro ajustes quando a luz está equilibrada.</li>
+              <li><strong>Diagnóstico serial:</strong> `Serial.println` ajuda a conferir se os LDRs estão lidos corretamente antes de mover o eixo.</li>
+              <li><strong>Servo em PWM dedicado:</strong> o pino 4 garante controle direto do SG90; ajuste conforme sua fiação.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel download" id="download">
+      <div class="panel-content">
+        <p class="eyebrow">Download do projeto</p>
+        <h2>Pacote completo SolarTrack</h2>
+        <p>Receba o código-fonte, esquema conceitual, checklist de montagem e este guia em formato offline.</p>
+        <a class="cta primary" href="downloads/solartrack-kit.zip" download>Baixar .zip</a>
+      </div>
+    </section>
+
+    <section class="panel video" id="video">
+      <div class="panel-content">
+        <p class="eyebrow">Vídeo tutorial</p>
+        <h2>Veja o SolarTrack em ação</h2>
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tutorial SolarTrack" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel lessons" id="licoes">
+      <div class="panel-content">
+        <p class="eyebrow">Problemas e lições</p>
+        <div class="grid two">
+          <div>
+            <h3>O que deu errado</h3>
+            <ul>
+              <li>Diferença de leitura pequena entre os LDRs: inserimos uma barreira maior de papelão para aumentar o contraste.</li>
+              <li>Base vibrando quando o eixo se movia rápido: reforçamos a estrutura com camadas extras de papelão.</li>
+              <li>Upload falhando na IDE 2.x.x: resetamos a porta serial e reduzimos o tamanho do sketch antes de reenviar.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Lições aprendidas</h3>
+            <ul>
+              <li>Pequenos ajustes físicos (como barreiras de luz) podem ser tão poderosos quanto mudanças no código.</li>
+              <li>Organizar fotos e medições no mesmo lugar facilita a criação da documentação final.</li>
+              <li>Um design limpo e consistente ajuda quem replica o projeto a confiar nas instruções.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <p>© 2025 SolarTrack · Disciplina de Sistemas Digitais · Todos os direitos reservados.</p>
+      <a href="#topo">Voltar ao topo</a>
+    </div>
+  </footer>
+</body>
+</html>
