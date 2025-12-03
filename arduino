@@ -30,17 +30,20 @@ void loop()
 
   int diff = abs(R1 - R2);
 
-  if (diff <= error) {
-    // dentro da zona morta (não mover)
-  } 
-  else {
+  // Só entramos no bloco de movimento se a diferença for MAIOR que o erro permitido
+  if (diff > error) {
+    // Se R1 tem mais luz que R2, movemos para um lado
     if (R1 > R2) {
-      initial_position -= 2;   // movimento mais rápido
+      initial_position = initial_position - 2; 
     }
-    else if (R1 < R2) {
-      initial_position += 2;   // movimento mais rápido
+    // Caso contrário (R2 tem mais luz), movemos para o outro
+    else {
+      initial_position = initial_position + 2; 
     }
   }
+
+  // O constrain continua fora do IF para garantir segurança total
+  initial_position = constrain(initial_position, 0, 180);
 
   // Limitar faixa do servo (0° a 180°)
   initial_position = constrain(initial_position, 0, 180);
