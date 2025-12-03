@@ -27,6 +27,9 @@ Este repositório contém o código-fonte e a documentação de um sistema de ra
 | **VCC Servo** | 5V | *Recomendado fonte externa* |
 | **GND** | GND | Comum |
 
+<img width="1536" height="632" alt="esquema-conceitual jpeg" src="https://github.com/user-attachments/assets/fbb749ec-1330-461f-ab14-3595915f247f" />
+
+
 ## Como Funciona o Código
 
 O sistema opera em um **Loop Fechado (Closed Loop)**:
