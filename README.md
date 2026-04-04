@@ -1,58 +1,153 @@
-# Arduino Solar Tracker (Rastreador Solar Automático)
+<div align="center">
 
-Este repositório contém o código-fonte e a documentação de um sistema de rastreamento solar de eixo único (Single Axis Solar Tracker). O projeto utiliza sensores de luz (LDRs) para detectar a posição da fonte de luz mais forte e ajusta automaticamente um painel solar (simulado aqui por um suporte no Servo) para mantê-lo perpendicular aos raios de luz, maximizando a eficiência energética.
+# ☀️ Arduino Solar Tracker
+
+### Rastreador Solar Automático de Eixo Único
+
+<br>
+
+![Arduino](https://img.shields.io/badge/Arduino-C++-00979D?style=flat-square&logo=arduino&logoColor=white)
+![HTML](https://img.shields.io/badge/HTML-63.9%25-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-25.3%25-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-6.3%25-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![C++](https://img.shields.io/badge/C++-4.5%25-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+
+<br>
+
+![Tipo](https://img.shields.io/badge/Tipo-Hardware_%2B_Software-4A4A4A?style=flat-square)
+![Instituição](https://img.shields.io/badge/Instituição-CESAR_School-6A0DAD?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Concluído-2E8B57?style=flat-square)
+
+<br>
+
+> *Protótipo de rastreador solar de eixo único usando Arduino, Servo Motor e sensores LDR*
+> *para maximizar automaticamente a captação de luz solar.*
+
+</div>
+
+---
+
+## Sobre o Projeto
+
+O **Arduino Solar Tracker** é um sistema embarcado que orienta um painel solar (simulado) de forma autônoma para sempre apontar na direção da maior incidência de luz. Dois sensores **LDR** leem continuamente a intensidade luminosa em cada lado do painel; o firmware em C++ processa essa diferença e aciona um **Servo Motor** para corrigir o ângulo em tempo real.
+
+O repositório também inclui um **front-end de monitoramento** (HTML + CSS + JS) para visualização dos dados coletados via Serial.
+
+---
 
 ## Funcionalidades
 
-- **Rastreamento Automático:** Ajuste em tempo real da posição baseado na incidência de luz.
-- **Eficiência Energética:** Sistema de histerese (margem de erro) para evitar movimentos desnecessários e vibrações do motor.
-- **Monitoramento Serial:** Saída de dados via Serial Monitor para debug e calibração dos sensores.
+- **Rastreamento automático** — ajuste contínuo da posição baseado na leitura dos LDRs
+- **Sistema de histerese** — margem de erro configurável evita vibração e movimentos desnecessários
+- **Monitoramento serial** — saída de dados via Serial Monitor para debug e calibração
+- **Front-end de visualização** — interface web para acompanhamento dos dados do sensor
+
+---
+
+## Como Funciona
+
+O sistema opera em **loop fechado (Closed Loop)**:
+
+```
+1. LEITURA    → Arduino lê os valores analógicos dos LDRs (esquerda e direita)
+2. COMPARAÇÃO → Calcula a diferença absoluta entre as duas leituras
+3. DECISÃO    → Se diferença < error (5): motor parado (economia de energia)
+                Se diferença ≥ error: identifica qual lado tem mais luz
+4. ATUAÇÃO    → Servo incrementa/decrementa o ângulo para apontar para a luz
+```
+
+---
 
 ## Hardware Necessário
 
-- 1x Placa Arduino (Uno, Nano ou compatível)
-- 1x Micro Servo Motor (SG90 ou similar)
-- 2x Sensores LDR (Light Dependent Resistor)
-- 2x Resistores de 10kΩ (para o divisor de tensão dos LDRs)
-- Jumpers e Protoboard
+| Componente | Quantidade | Observação |
+|---|---|---|
+| Placa Arduino | 1x | Uno, Nano ou compatível |
+| Micro Servo Motor | 1x | SG90 ou similar |
+| Sensor LDR | 2x | Light Dependent Resistor |
+| Resistor 10kΩ | 2x | Divisor de tensão dos LDRs |
+| Jumpers e Protoboard | — | Para montagem do circuito |
+
+---
 
 ## Esquema de Ligação (Pinout)
 
 | Componente | Pino no Arduino | Observação |
-|Data | Pin | Note |
 |---|---|---|
 | **Servo Sinal** | D4 | Pino Digital PWM |
 | **LDR 1** | A0 | Pino Analógico |
 | **LDR 2** | A1 | Pino Analógico |
-| **VCC Servo** | 5V | *Recomendado fonte externa* |
-| **GND** | GND | Comum |
+| **VCC Servo** | 5V | Recomendado fonte externa |
+| **GND** | GND | Comum a todos os componentes |
 
-<img width="1536" height="632" alt="esquema-conceitual jpeg" src="https://github.com/user-attachments/assets/fbb749ec-1330-461f-ab14-3595915f247f" />
+<div align="center">
 
+![Esquema Conceitual](front%20end/esquema-conceitual.jpeg.png)
 
-## Como Funciona o Código
-
-O sistema opera em um **Loop Fechado (Closed Loop)**:
-
-1. **Leitura:** O Arduino lê os valores analógicos dos dois LDRs (Esquerda e Direita).
-2. **Comparação:** Calcula a diferença absoluta entre as duas leituras.
-3. **Decisão (Histerese):** - Se a diferença for menor que a variável `error` (definida como 5), o motor permanece parado para economizar energia.
-   - Se a diferença for maior, o sistema identifica qual lado tem mais luz.
-4. **Atuação:** O Servo motor incrementa ou decrementa o ângulo para apontar o painel para a luz.
-
-## Solução de Problemas Comuns (Troubleshooting)
-
-### Erro: "Serial data stream stopped" ou Reset do Arduino
-Se o Arduino reiniciar ou desconectar ao mover o motor, isso geralmente é causado por **queda de tensão (Brown-out)** devido ao pico de corrente do Servo Motor SG90.
-
-**Soluções:**
-1. **Capacitor:** Adicione um capacitor eletrolítico (100uF a 470uF) entre o VCC e GND do motor.
-2. **Fonte Externa:** Alimente o Servo Motor com uma fonte externa de 5V (lembre-se de conectar os GNDs juntos).
-3. **Delay:** Aumente o `delay` no final do loop para suavizar a demanda de corrente.
-
-## Autor
-
-Luis Felipe Farias Nunes | João Pedro Cavalcanti de Souza | Guilherme Alves de Souza | Cauã Rego Tavares Leite Duarte  | Gabriel Brito Ferreira Dias | Matheus Rodrigues Larré
+</div>
 
 ---
-*Status do Projeto: Concluído ✅*
+
+## Estrutura
+
+```
+tracker_solar/
+├── arduino.ino      # Firmware do rastreador (C++ / Arduino)
+└── front end/       # Interface web de monitoramento (HTML + CSS + JS)
+```
+
+---
+
+## Como Usar
+
+### Firmware (Arduino)
+
+1. Abra o arquivo `arduino.ino` na **Arduino IDE**
+2. Conecte sua placa Arduino via USB
+3. Selecione a placa e porta correta em **Ferramentas**
+4. Clique em **Upload** para gravar o firmware
+5. Abra o **Serial Monitor** (9600 baud) para acompanhar os dados em tempo real
+
+### Front-end
+
+1. Navegue até a pasta `front end/`
+2. Abra o `index.html` no navegador
+
+---
+
+## Solução de Problemas
+
+### Arduino reinicia ao mover o motor
+
+Causado por **queda de tensão (Brown-out)** pelo pico de corrente do Servo SG90. Soluções:
+
+- **Capacitor** — adicione um capacitor eletrolítico (100µF a 470µF) entre VCC e GND do motor
+- **Fonte externa** — alimente o Servo com fonte externa de 5V (conecte os GNDs juntos)
+- **Delay** — aumente o `delay` no final do loop para suavizar a demanda de corrente
+
+---
+
+## Equipe
+
+<div align="center">
+
+| Desenvolvedor |
+|---|
+| **Luis Felipe Farias Nunes** |
+| João Pedro Cavalcanti de Souza |
+| Guilherme Alves de Souza |
+| Cauã Rego Tavares Leite Duarte |
+| Gabriel Brito Ferreira Dias |
+| Matheus Rodrigues Larré |
+
+[![GitHub](https://img.shields.io/badge/GitHub-Luisr--nunes-181717?style=flat-square&logo=github)](https://github.com/Luisr-nunes)
+
+</div>
+
+---
+
+<div align="center">
+
+*🌱 Tecnologia a serviço da energia limpa — um grau de cada vez.*
+
+</div>
