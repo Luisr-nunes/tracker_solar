@@ -1,153 +1,83 @@
-<div align="center">
+# SolarTrack — Rastreador Solar com Arduino
 
-# ☀️ Arduino Solar Tracker
+<!-- badges -->
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white) ![Arduino](https://img.shields.io/badge/Arduino-00878F?style=flat-square&logo=arduino&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-663399?style=flat-square&logo=css&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
-### Rastreador Solar Automático de Eixo Único
+[Read in English](README.en.md)
 
-<br>
+Protótipo de rastreador solar de eixo único com Arduino, servo motor e dois sensores LDR, que gira o painel em direção à maior incidência de luz. Projeto da disciplina de Sistemas Digitais (Introdução à Computação), na Cesar School.
 
-![Arduino](https://img.shields.io/badge/Arduino-C++-00979D?style=flat-square&logo=arduino&logoColor=white)
-![HTML](https://img.shields.io/badge/HTML-63.9%25-E34F26?style=flat-square&logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS-25.3%25-1572B6?style=flat-square&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-6.3%25-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![C++](https://img.shields.io/badge/C++-4.5%25-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+## Como funciona
 
-<br>
-
-![Tipo](https://img.shields.io/badge/Tipo-Hardware_%2B_Software-4A4A4A?style=flat-square)
-![Instituição](https://img.shields.io/badge/Instituição-CESAR_School-6A0DAD?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Concluído-2E8B57?style=flat-square)
-
-<br>
-
-> *Protótipo de rastreador solar de eixo único usando Arduino, Servo Motor e sensores LDR*
-> *para maximizar automaticamente a captação de luz solar.*
-
-</div>
-
----
-
-## Sobre o Projeto
-
-O **Arduino Solar Tracker** é um sistema embarcado que orienta um painel solar (simulado) de forma autônoma para sempre apontar na direção da maior incidência de luz. Dois sensores **LDR** leem continuamente a intensidade luminosa em cada lado do painel; o firmware em C++ processa essa diferença e aciona um **Servo Motor** para corrigir o ângulo em tempo real.
-
-O repositório também inclui um **front-end de monitoramento** (HTML + CSS + JS) para visualização dos dados coletados via Serial.
-
----
-
-## Funcionalidades
-
-- **Rastreamento automático** — ajuste contínuo da posição baseado na leitura dos LDRs
-- **Sistema de histerese** — margem de erro configurável evita vibração e movimentos desnecessários
-- **Monitoramento serial** — saída de dados via Serial Monitor para debug e calibração
-- **Front-end de visualização** — interface web para acompanhamento dos dados do sensor
-
----
-
-## Como Funciona
-
-O sistema opera em **loop fechado (Closed Loop)**:
+O sistema opera em malha fechada:
 
 ```
-1. LEITURA    → Arduino lê os valores analógicos dos LDRs (esquerda e direita)
-2. COMPARAÇÃO → Calcula a diferença absoluta entre as duas leituras
-3. DECISÃO    → Se diferença < error (5): motor parado (economia de energia)
-                Se diferença ≥ error: identifica qual lado tem mais luz
-4. ATUAÇÃO    → Servo incrementa/decrementa o ângulo para apontar para a luz
+1. Leitura    → o Arduino lê os dois LDRs (A0 e A1) e imprime os valores na serial
+2. Comparação → calcula a diferença absoluta entre as leituras
+3. Decisão    → se a diferença for menor ou igual à margem (40), o servo fica parado
+                se for maior, identifica o lado com mais luz
+4. Atuação    → o servo anda 2° em direção à luz, limitado entre 0° e 180°
 ```
 
----
+A margem de 40 evita que o painel fique vibrando com pequenas variações de luz.
 
-## Hardware Necessário
+## Hardware
 
 | Componente | Quantidade | Observação |
-|---|---|---|
-| Placa Arduino | 1x | Uno, Nano ou compatível |
-| Micro Servo Motor | 1x | SG90 ou similar |
-| Sensor LDR | 2x | Light Dependent Resistor |
-| Resistor 10kΩ | 2x | Divisor de tensão dos LDRs |
-| Jumpers e Protoboard | — | Para montagem do circuito |
+| --- | --- | --- |
+| Arduino Uno, Nano ou compatível | 1 | |
+| Micro servo SG90 | 1 | |
+| LDR | 2 | |
+| Resistor de 10 kΩ | 2 | Divisor de tensão dos LDRs |
+| Protoboard e jumpers | — | |
 
----
+## Ligações
 
-## Esquema de Ligação (Pinout)
-
-| Componente | Pino no Arduino | Observação |
-|---|---|---|
-| **Servo Sinal** | D4 | Pino Digital PWM |
-| **LDR 1** | A0 | Pino Analógico |
-| **LDR 2** | A1 | Pino Analógico |
-| **VCC Servo** | 5V | Recomendado fonte externa |
-| **GND** | GND | Comum a todos os componentes |
+| Componente | Pino do Arduino |
+| --- | --- |
+| Sinal do servo | D9 |
+| LDR 1 | A0 |
+| LDR 2 | A1 |
+| VCC do servo | 5V (de preferência fonte externa) |
+| GND | GND comum |
 
 <div align="center">
 
-![Esquema Conceitual](front%20end/esquema-conceitual.jpeg.png)
+![Esquema conceitual](front%20end/esquema-conceitual.jpeg.png)
 
 </div>
-
----
 
 ## Estrutura
 
 ```
 tracker_solar/
-├── arduino.ino      # Firmware do rastreador (C++ / Arduino)
-└── front end/       # Interface web de monitoramento (HTML + CSS + JS)
+├── arduino.ino          # firmware
+└── front end/           # página de apresentação do projeto
+    ├── index.html, styles.css, script.js, logo.svg
+    ├── esquema-conceitual.jpeg(.png)
+    └── downloads/       # pacotes .zip do projeto
 ```
 
----
+A página em `front end/` apresenta o projeto: motivação, equipe, lista de componentes, passo a passo de montagem, explicação do loop principal, vídeo e download do pacote completo.
 
-## Como Usar
+## Como usar
 
-### Firmware (Arduino)
+**Firmware**
 
-1. Abra o arquivo `arduino.ino` na **Arduino IDE**
-2. Conecte sua placa Arduino via USB
-3. Selecione a placa e porta correta em **Ferramentas**
-4. Clique em **Upload** para gravar o firmware
-5. Abra o **Serial Monitor** (9600 baud) para acompanhar os dados em tempo real
+1. Abra `arduino.ino` na Arduino IDE (a biblioteca `Servo` já vem instalada).
+2. Selecione a placa e a porta em Ferramentas e clique em Upload.
+3. Abra o Monitor Serial em 9600 baud para ver as leituras dos LDRs.
 
-### Front-end
+**Página do projeto:** abra `front end/index.html` no navegador.
 
-1. Navegue até a pasta `front end/`
-2. Abra o `index.html` no navegador
+## Solução de problemas
 
----
+**O Arduino reinicia quando o motor se move.** É queda de tensão causada pelo pico de corrente do SG90. Para resolver:
 
-## Solução de Problemas
-
-### Arduino reinicia ao mover o motor
-
-Causado por **queda de tensão (Brown-out)** pelo pico de corrente do Servo SG90. Soluções:
-
-- **Capacitor** — adicione um capacitor eletrolítico (100µF a 470µF) entre VCC e GND do motor
-- **Fonte externa** — alimente o Servo com fonte externa de 5V (conecte os GNDs juntos)
-- **Delay** — aumente o `delay` no final do loop para suavizar a demanda de corrente
-
----
+- adicione um capacitor eletrolítico de 100 µF a 470 µF entre VCC e GND do servo;
+- alimente o servo com uma fonte externa de 5 V, ligando os GNDs juntos;
+- aumente o `delay` no fim do `loop` para suavizar a demanda de corrente.
 
 ## Equipe
 
-<div align="center">
-
-| Desenvolvedor |
-|---|
-| **Luis Felipe Farias Nunes** |
-| João Pedro Cavalcanti de Souza |
-| Guilherme Alves de Souza |
-| Cauã Rego Tavares Leite Duarte |
-| Gabriel Brito Ferreira Dias |
-| Matheus Rodrigues Larré |
-
-[![GitHub](https://img.shields.io/badge/GitHub-Luisr--nunes-181717?style=flat-square&logo=github)](https://github.com/Luisr-nunes)
-
-</div>
-
----
-
-<div align="center">
-
-*🌱 Tecnologia a serviço da energia limpa — um grau de cada vez.*
-
-</div>
+Luis Felipe Farias Nunes, João Pedro Cavalcanti de Souza, Guilherme Alves de Souza, Cauã Rego Tavares Leite Duarte, Gabriel Brito Ferreira Dias e Matheus Rodrigues Larré.
